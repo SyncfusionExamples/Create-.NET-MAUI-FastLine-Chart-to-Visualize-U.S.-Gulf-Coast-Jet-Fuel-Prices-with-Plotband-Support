@@ -1,0 +1,2 @@
+# Create-.NET-MAUI-FastLine-Chart-to-Visualize-U.S.-Gulf-Coast-Jet-Fuel-Prices-with-Plotband-Support.
+This sample demonstrates to visualize weekly U.S. Gulf Coast kerosene-type jet fuel spot prices from 1990 to 2024 using Syncfusion .NET MAUI FastLine Chart. It also highlights price ranges with plotband support and introduces a date-time range selector with a mini chart for interactive data exploration.
