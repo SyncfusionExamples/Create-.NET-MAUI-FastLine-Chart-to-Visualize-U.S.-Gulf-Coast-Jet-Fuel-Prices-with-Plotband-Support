@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:USJetFuelPrice"
+             xmlns:charts="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:sliders="clr-namespace:Syncfusion.Maui.Sliders;assembly=Syncfusion.Maui.Sliders"
+             x:Class="USJetFuelPrice.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:ViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+
+    <Border Padding="20" Margin="20" StrokeThickness="2" Background="#3B1E54">
+
+        <Grid RowDefinitions="190*,130"
+              ColumnDefinitions="*"
+              RowSpacing="15">
+
+            <charts:SfCartesianChart x:Name="Chart" TrackballCreated="Chart_TrackballCreated"                               
+                                     Margin="8,0">
+
+                <charts:SfCartesianChart.TrackballBehavior>
+                    <charts:ChartTrackballBehavior DisplayMode="GroupAllPoints">
+                        <charts:ChartTrackballBehavior.LabelStyle>
+                            <charts:ChartLabelStyle  TextColor="Black" Background="White" />
+                        </charts:ChartTrackballBehavior.LabelStyle>
+                        <charts:ChartTrackballBehavior.LineStyle>
+                            <charts:ChartLineStyle Stroke="White"/>
+                        </charts:ChartTrackballBehavior.LineStyle>
+                        <charts:ChartTrackballBehavior.MarkerSettings>
+                            <charts:ChartMarkerSettings Fill="White"/>
+                        </charts:ChartTrackballBehavior.MarkerSettings>
+                    </charts:ChartTrackballBehavior>
+                </charts:SfCartesianChart.TrackballBehavior>
+
+                <charts:SfCartesianChart.Title >
+                    <HorizontalStackLayout Margin="0,0,20,20">
+                        <Image Source="oildrum.png"
+                               Margin="5,0,5,0" 
+                               HeightRequest="{OnPlatform Android=16, WinUI=20, iOS= 16, MacCatalyst= 20}"  
+                               WidthRequest="{OnPlatform Android=16, WinUI=20, iOS= 16, MacCatalyst= 20}"/>
+                        <Label Text="Weekly U.S. Gulf Coast Kerosene-Type Jet Fuel Spot Price (Dollars per Gallon)"
+                                TextColor="White"
+                               LineBreakMode="{OnPlatform Android=WordWrap}"
+                                FontSize="{OnPlatform Android=10, WinUI=18, iOS=10, MacCatalyst=18}"
+                                FontFamily="TimeSpan"
+                                FontAttributes="Bold"
+                               WidthRequest="{OnPlatform Android=250, iOS=10}"
+                                Margin="0,2,0,0" />
+                    </HorizontalStackLayout>
+
+                </charts:SfCartesianChart.Title>
+
+                <charts:SfCartesianChart.XAxes>
+                    <charts:DateTimeAxis Minimum="{Binding RangeStart, Source={x:Reference Selector}}"
+                                         Maximum="{Binding RangeEnd, Source={x:Reference Selector}}"
+                                         ShowMajorGridLines="False" >
+                        <charts:DateTimeAxis.LabelStyle>
+                            <charts:ChartAxisLabelStyle TextColor="White"/>
+                        </charts:DateTimeAxis.LabelStyle>
+
+                        <charts:DateTimeAxis.MajorTickStyle>
+                            <charts:ChartAxisTickStyle StrokeWidth="1" Stroke="White" />
+                        </charts:DateTimeAxis.MajorTickStyle>
+
+                        <charts:DateTimeAxis.AxisLineStyle>
+                            <charts:ChartLineStyle StrokeWidth="1" Stroke="White" />
+                        </charts:DateTimeAxis.AxisLineStyle>
+                        <charts:DateTimeAxis.PlotBands>
+                            <charts:DateTimePlotBandCollection>
+                                <charts:DateTimePlotBand 
+                                        Start="1990-07-27" End="1990-12-21" 
+                                        Fill="#60E4F1FF" />
+                                
+                                <charts:DateTimePlotBand 
+                                        Start="2005-07-22" End="2005-12-09" 
+                                        Fill="#60E4F1FF" />
+
+                                <charts:DateTimePlotBand 
+                                        Start="2008-03-01" End="2008-10-15" 
+                                        Fill="#60E4F1FF" />
+
+                                <charts:DateTimePlotBand 
+                                        Start="2019-12-27" End="2020-08-28" 
+                                        Fill="#60E4F1FF" />
+
+                                
+                                <charts:DateTimePlotBand 
+                                        Start="2022-02-18" End="2023-05-12" 
+                                        Fill="#60E4F1FF" />
+                                
+                            </charts:DateTimePlotBandCollection>
+                        </charts:DateTimeAxis.PlotBands>
+
+                    </charts:DateTimeAxis>
+                </charts:SfCartesianChart.XAxes>
+
+                <charts:SfCartesianChart.YAxes>
+                    <charts:NumericalAxis EnableAutoIntervalOnZooming="True"
+                                          EdgeLabelsDrawingMode="Shift"
+                                          RangePadding="Round" Interval="1"
+                                          ShowMajorGridLines="True"
+                                          IsVisible="True">
+
+                        <charts:NumericalAxis.MajorGridLineStyle>
+                            <charts:ChartLineStyle StrokeWidth="0.2" Stroke="White"/>
+                        </charts:NumericalAxis.MajorGridLineStyle>
+
+                        <charts:NumericalAxis.LabelStyle>
+                            <charts:ChartAxisLabelStyle LabelAlignment="Center" TextColor="White" LabelFormat="0'$'" />
+                        </charts:NumericalAxis.LabelStyle>
+
+
+                        <charts:NumericalAxis.MajorTickStyle>
+                            <charts:ChartAxisTickStyle StrokeWidth="1" Stroke="White" />
+                        </charts:NumericalAxis.MajorTickStyle>
+
+                        <charts:NumericalAxis.AxisLineStyle>
+                            <charts:ChartLineStyle StrokeWidth="1" Stroke="White" />
+                        </charts:NumericalAxis.AxisLineStyle>
+                    </charts:NumericalAxis>
+                </charts:SfCartesianChart.YAxes>
+
+                <charts:SfCartesianChart.Series>
+                    <charts:FastLineSeries ItemsSource="{Binding WeeklyPriceData}"
+                                         XBindingPath="Date"
+                                         YBindingPath="Price"
+                                           ShowTrackballLabel="True"    
+                                           Fill="#E9D5CA"
+                                         StrokeWidth="2">
+                    </charts:FastLineSeries>
+                </charts:SfCartesianChart.Series>
+            </charts:SfCartesianChart>
+
+            <sliders:SfDateTimeRangeSelector x:Name="Selector"
+                                             Grid.Row="1"
+                                             Minimum="1990-04-06"
+                                             Maximum="2024-09-27"
+                                             RangeStart="2000-05-01"
+                                             RangeEnd="2021-09-01"
+                                             Interval="5"
+                                             IntervalType="Years"
+                                             ShowTicks="True"
+                                             ShowLabels="True"
+                                             LabelsPlacement="BetweenTicks"
+                                             DragBehavior="Both"
+                                             EnableDeferredUpdate="True"
+                                             InactiveRegionFill="#40FFFBE4"
+                                             >
+
+                <sliders:SfDateTimeRangeSelector.TrackStyle>
+                    <sliders:SliderTrackStyle ActiveFill="#9B7EBD"
+                                              InactiveFill="#D4BEE4" />
+                </sliders:SfDateTimeRangeSelector.TrackStyle>
+
+                <sliders:SfDateTimeRangeSelector.ThumbStyle>
+                    <sliders:SliderThumbStyle Fill="White"
+                                              StrokeThickness="2"
+                                              Stroke="#9B7EBD" />
+                </sliders:SfDateTimeRangeSelector.ThumbStyle>
+
+                <sliders:SfDateTimeRangeSelector.ThumbOverlayStyle>
+                    <sliders:SliderThumbOverlayStyle Fill="#4DD4BEE4" />
+                </sliders:SfDateTimeRangeSelector.ThumbOverlayStyle>
+
+                <sliders:SfDateTimeRangeSelector.LabelStyle>
+                    <sliders:SliderLabelStyle ActiveTextColor= "White"
+                                              InactiveTextColor="White"
+                                              InactiveFontSize="{OnPlatform 14, Android=10, iOS=10}"
+                                              ActiveFontSize="{OnPlatform 14, Android=10, iOS=10}" />
+                </sliders:SfDateTimeRangeSelector.LabelStyle>
+
+                <charts:SfCartesianChart>
+                    <charts:SfCartesianChart.XAxes>
+                        <charts:DateTimeAxis Minimum="1990-04-06T05:30:00"
+                                             Maximum="2024-09-24T05:30:00"
+                                             IsVisible="False"
+                                             ShowMajorGridLines="False" >
+                            <charts:DateTimeAxis.AxisLineStyle>
+                                <charts:ChartLineStyle StrokeWidth="0" />
+                            </charts:DateTimeAxis.AxisLineStyle>
+                        </charts:DateTimeAxis>
+                    </charts:SfCartesianChart.XAxes>
+
+                    <charts:SfCartesianChart.YAxes>
+                        <charts:NumericalAxis IsVisible="False"
+                                              Minimum="0.0"
+                                              Maximum="5.0"
+                                              ShowMajorGridLines="False" />
+                    </charts:SfCartesianChart.YAxes>
+
+                    <charts:SfCartesianChart.Series>
+                        <charts:FastLineSeries ItemsSource="{Binding WeeklyPriceData}"
+                                                 XBindingPath="Date"
+                                                 YBindingPath="Price"
+                                                 Fill="#cfe2f9"
+                                                 StrokeWidth="1.5">
+                        </charts:FastLineSeries>
+                    </charts:SfCartesianChart.Series>
+                </charts:SfCartesianChart>
+            </sliders:SfDateTimeRangeSelector>
+        </Grid>
+
+    </Border>
+
+</ContentPage>
