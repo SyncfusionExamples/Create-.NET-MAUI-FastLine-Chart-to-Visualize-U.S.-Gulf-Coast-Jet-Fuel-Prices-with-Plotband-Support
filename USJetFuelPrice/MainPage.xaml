@@ -45,7 +45,7 @@
                                 FontSize="{OnPlatform Android=10, WinUI=18, iOS=10, MacCatalyst=18}"
                                 FontFamily="TimeSpan"
                                 FontAttributes="Bold"
-                               WidthRequest="{OnPlatform Android=250}"
+                               WidthRequest="{OnPlatform Android=250, iOS=10}"
                                 Margin="0,2,0,0" />
                     </HorizontalStackLayout>
 
@@ -118,26 +118,6 @@
                         <charts:NumericalAxis.AxisLineStyle>
                             <charts:ChartLineStyle StrokeWidth="1" Stroke="White" />
                         </charts:NumericalAxis.AxisLineStyle>
-
-                        <!--<charts:NumericalAxis.PlotBands >
-                            <charts:NumericalPlotBandCollection >
-                                <charts:NumericalPlotBand Start="0"  End="0" Text="Low" Fill="#AB2830">
-                                    <charts:NumericalPlotBand.LabelStyle>
-                                        <charts:ChartPlotBandLabelStyle HorizontalTextAlignment="End" VerticalTextAlignment="End" TextColor="White"/>
-                                    </charts:NumericalPlotBand.LabelStyle>
-                                </charts:NumericalPlotBand>
-                                <charts:NumericalPlotBand Start="2" End="2.50" Text="SupportZone " Fill="#B28400">
-                                    <charts:NumericalPlotBand.LabelStyle>
-                                        <charts:ChartPlotBandLabelStyle HorizontalTextAlignment="Start" VerticalTextAlignment="End" TextColor="White"/>
-                                    </charts:NumericalPlotBand.LabelStyle>
-                                </charts:NumericalPlotBand>
-                                <charts:NumericalPlotBand Start="4.50" End="5" Text="ResistenceZone" Fill="#309053">
-                                    <charts:NumericalPlotBand.LabelStyle>
-                                        <charts:ChartPlotBandLabelStyle HorizontalTextAlignment="Start" VerticalTextAlignment="End" TextColor="White"/>
-                                    </charts:NumericalPlotBand.LabelStyle>
-                                </charts:NumericalPlotBand>
-                            </charts:NumericalPlotBandCollection>
-                        </charts:NumericalAxis.PlotBands>-->
                     </charts:NumericalAxis>
                 </charts:SfCartesianChart.YAxes>
 
