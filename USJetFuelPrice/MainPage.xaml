@@ -45,7 +45,7 @@
                                 FontSize="{OnPlatform Android=10, WinUI=18, iOS=10, MacCatalyst=18}"
                                 FontFamily="TimeSpan"
                                 FontAttributes="Bold"
-                               WidthRequest="{OnPlatform Android=250, iOS=10}"
+                               WidthRequest="{OnPlatform Android=250, iOS=260}"
                                 Margin="0,2,0,0" />
                     </HorizontalStackLayout>
 
@@ -96,11 +96,8 @@
                 </charts:SfCartesianChart.XAxes>
 
                 <charts:SfCartesianChart.YAxes>
-                    <charts:NumericalAxis EnableAutoIntervalOnZooming="True"
-                                          EdgeLabelsDrawingMode="Shift"
-                                          RangePadding="Round" Interval="1"
-                                          ShowMajorGridLines="True"
-                                          IsVisible="True">
+                    <charts:NumericalAxis EdgeLabelsDrawingMode="Shift"
+                                          RangePadding="Round" Interval="1">
 
                         <charts:NumericalAxis.MajorGridLineStyle>
                             <charts:ChartLineStyle StrokeWidth="0.2" Stroke="White"/>
