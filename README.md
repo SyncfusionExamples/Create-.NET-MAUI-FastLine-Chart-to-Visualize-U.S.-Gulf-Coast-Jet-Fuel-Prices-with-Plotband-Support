@@ -17,4 +17,4 @@ In this sample, we custoize the chart with plotband and add the date time range 
 
 ![Syncfusion NET MAUI FastLineChart](https://github.com/user-attachments/assets/d1ca6a61-764f-4a16-9733-d3e3a970c60a)
 
-for more details on the step - by - step procedure, refer to the blog of visualize U.S Gulf Coast jet fuel prices with plotband and date time range selector Support.
+for more details on the step - by - step procedure, refer to the blog of [visualize U.S Gulf Coast jet fuel prices with plotband and date time range selector Support](https://www.syncfusion.com/blogs/post/maui-fastlinechart-for-jet-fuel-price).
